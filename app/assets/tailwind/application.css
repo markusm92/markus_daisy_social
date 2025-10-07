@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "./daisyui.mjs";
+@plugin "./daisyui-theme.mjs";
+
+/* Register your custom font */
+@font-face {
+  font-family: "Magic Retro";
+  src: url("/assets/MagicRetro.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Add your custom theme variable */
+@theme {
+  --font-header: "MagicRetro", sans-serif;
+}
