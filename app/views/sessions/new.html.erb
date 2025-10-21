@@ -1,4 +1,24 @@
-<div class="mx-auto md:w-2/3 w-full">
+<div class="mx-auto md:w-2/3 w-full space-y-6">
+
+  <!-- GIF and Animated Welcome Text -->
+  <div class="flex flex-col items-center space-y-3">
+    <div class="w-full max-w-xs">
+      <div class="tenor-gif-embed" 
+           data-postid="27005393" 
+           data-share-method="host" 
+           data-aspect-ratio="1.20301" 
+           data-width="100%">
+        <a href="https://tenor.com/view/welcome-michael-scott-dunder-mifflin-the-office-welcome-aboard-gif-27005393">
+          Welcome Michael Scott GIF
+        </a> 
+        from <a href="https://tenor.com/search/welcome-gifs">Welcome GIFs</a>
+      </div>
+    </div>
+    <h2 class="text-2xl font-bold text-blue-600 animate-bounce text-center">
+      Welcome back!
+    </h2>
+  </div>
+
   <% if alert = flash[:alert] %>
     <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
   <% end %>
@@ -23,9 +43,13 @@
         <%= form.submit "Sign in", class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
       </div>
 
-      <%= link_to 'Sign Up', new_registrations_path, class: 'px-3 py-2 rounded-lg border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-gray-50 transition duration-250' %><div class="mt-4 text-sm text-gray-500 sm:mt-0">
+      <%= link_to 'Sign Up', new_registrations_path, class: 'px-3 py-2 rounded-lg border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-gray-50 transition duration-250' %>
+      <div class="mt-4 text-sm text-gray-500 sm:mt-0">
         <%= link_to "Forgot password?", new_password_path, class: "text-gray-700 underline hover:no-underline" %>
       </div>
     </div>
   <% end %>
 </div>
+
+<!-- Tenor embed script -->
+<script type="text/javascript" async src="https://tenor.com/embed.js"></script>
