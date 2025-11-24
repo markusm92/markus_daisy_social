@@ -3,11 +3,15 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Current.user.posts  # show only current user's posts
+    # Show all posts (global feed)
+    @posts = policy_scope(Post)
+             .includes(:user, :likes, :comments, images_attachments: :blob)
+             .order(created_at: :desc)
   end
 
   # GET /posts/1
   def show
+    # Any user can view another user's post
     authorize @post
   end
 
@@ -56,8 +60,8 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:id])  # find by ID first
-    authorize @post                 # then check if current_user can access it
+    @post = Post.find(params[:id])
+    authorize @post
   end
 
   def post_params

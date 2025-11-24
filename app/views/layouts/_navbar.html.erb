@@ -1,46 +1,64 @@
-<div class="navbar bg-base-100 shadow-sm fixed top-0">
+<div class="navbar bg-base-100 shadow-sm fixed top-0 z-50">
+
+  <!-- LEFT SECTION: Logo + mobile menu -->
   <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <!-- Mobile dropdown -->
+    <div class="dropdown lg:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+             stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h8m-8 6h16" />
+                d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </div>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Item 1</a></li>
-        <li>
-          <a>Parent</a>
-          <ul class="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </li>
-        <li><a>Item 3</a></li>
+
+      <ul tabindex="0"
+          class="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 shadow z-50">
+
+        <% if Current.user %>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "My Posts", posts_path %></li>
+          <li><%= link_to "New Post", new_post_path %></li>
+          <li><%= link_to "Logout", session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Log In", new_session_path %></li>
+          <li><%= link_to "Sign Up", new_registrations_path %></li>
+        <% end %>
       </ul>
     </div>
-    <%= link_to "Markus-DaisySocial", root_path, class: "btn btn-ghost text-xl" %>
+
+    <!-- Logo (always visible) -->
+    <%= link_to "Markus-DaisySocial", root_path, class: "btn btn-ghost normal-case text-xl" %>
   </div>
 
+
+  <!-- CENTER SECTION: Desktop menu -->
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      <li><a>Explore</a></li>
-      <li>
-        <details>
-          <summary>About</summary>
-          <ul class="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a>Friends</a></li>
+
+      <li><%= link_to "Home", root_path, class: "btn btn-ghost" %></li>
+
+      <% if Current.user %>
+        <li><%= link_to "My Posts", posts_path, class: "btn btn-ghost" %></li>
+        <li><%= link_to "New Post", new_post_path, class: "btn btn-primary text-white" %></li>
+      <% else %>
+        <li><%= link_to "Log In", new_session_path, class: "btn btn-ghost" %></li>
+        <li><%= link_to "Sign Up", new_registrations_path, class: "btn btn-secondary" %></li>
+      <% end %>
+
     </ul>
   </div>
 
+
+  <!-- RIGHT SECTION: User info -->
   <div class="navbar-end">
-    <%= link_to "Postaa Jotain", new_post_path, class: "btn btn-primary" %>
+    <% if Current.user %>
+      <span class="badge badge-primary badge-outline mr-3">
+        <%= Current.user.email_address %>
+      </span>
+      <%= link_to "Logout", session_path, method: :delete, class: "btn btn-error btn-sm" %>
+    <% end %>
   </div>
+
 </div>

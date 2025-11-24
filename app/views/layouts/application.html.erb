@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
   <head>
     <title><%= content_for(:title) || "Markus Daisy Social" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -21,12 +21,14 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class=" flex <%= @classes_for_body %>"> 
+  <!-- Gradient background with ! override to take priority over DaisyUI -->
+  <body class="min-h-screen !bg-gradient-to-b !from-slate-50 !via-white !to-indigo-50 text-gray-900 flex <%= @classes_for_body %>">
     <%= render "layouts/navbar" %>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container mx-auto mt-28 px-5 flex bg-transparent">
       <%= yield %>
     </main>
   </body>
 </html>
+
 <%# Piti lisätä riville 24 flex, koska daisyui muokkasi sivun ylälaitaan tyhjän palkin. Tämä vaatii kuitenkin muokkauksen
 _navbar.html.erbssä, koska muuten navbar menee sivulle %>

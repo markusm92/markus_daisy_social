@@ -1,6 +1,15 @@
 class PostPolicy < ApplicationPolicy
+  # 👇 Added this Scope class so policy_scope(Post) works
+  class Scope < Scope
+    def resolve
+      # Everyone can see all posts
+      scope.all
+    end
+  end
+
   def show?
-    user_owns_post?
+    # Allow everyone to view posts
+    true
   end
 
   def edit?
